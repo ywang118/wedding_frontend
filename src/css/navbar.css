@@ -1,0 +1,107 @@
+body {
+  font-family: 'Monda', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  text-align: right;
+  align-items: center;
+  margin: 10px 0px 10px 80px;
+}
+
+.main-logo {
+  width: 260px;
+  height: 100px;
+  margin-left: 40px;
+}
+
+.login {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  background-color: white;
+  border:none;
+  padding: 10px;
+  color: #160424;
+  margin-right: 10px;
+
+}
+
+.login:hover {
+  background-color: #eb7171;
+  border-radius: 22.5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 200;
+}
+
+.nav-button {
+  text-decoration: none;
+}
+.p-browse {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  background-color: white;
+  border:none;
+  padding: 10px;
+  color: #160424;
+
+}
+
+.p-browse:hover {
+  background-color: #eb7171;
+  border-radius: 22.5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 200;
+}
+
+.browse {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 25px;
+  border:none;
+  padding: 10px;
+  color: #160424;
+}
+
+.browse:hover {
+  background-color: #eb7171;
+  border-radius: 22.5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 200;
+}
+
+
+.back-button {
+  width: 14px;
+ height: 18px;
+}
+
+.white-logo {
+  width: 152px;
+  height: 28px;
+  text-align: center;
+  padding-left: 50px;
+}
+
+.count-boxes {
+  color: white;
+  font-size: 16px;
+}
+.order-navbar {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    position: fixed;
+    top:0;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: #eb7171;
+}
