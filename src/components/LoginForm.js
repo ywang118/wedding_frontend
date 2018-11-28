@@ -56,7 +56,9 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  
   return {
+
     authenticatingUser: state.userReducer.authenticatingUser,
     failedLogin: state.userReducer.failedLogin,
     error: state.userReducer.error,

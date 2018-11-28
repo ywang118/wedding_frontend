@@ -19,9 +19,6 @@ function userReducer(state=defaultState, action) {
     case FAILED_LOGIN:
       return { ...state, failedLogin: true, error: action.payload, authenticatingUser: false }
 
-
-
-
     default:
       return state
   }

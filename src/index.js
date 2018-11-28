@@ -10,6 +10,7 @@ import PhotographersPage from './pages/photographersPage'
 import PhotographerDetailPage from './pages/PhotographerDetailPage'
 import LoginPage from './pages/loginPage'
 import ProfilePage from './pages/profilePage'
+import SignupPage from './pages/signupPage';
 //css files
 import './css/navbar.css';
 import './css/photographer.css';
@@ -23,6 +24,7 @@ ReactDOM.render(
           <Route path='/photographers/:id' exact render={props=><PhotographerDetailPage {...props} />} />
           <Route path='/login' exact render={()=><LoginPage />} />
           <Route path='/profile' exact component={ProfilePage} />
+          <Route path='/signup' exact component={SignupPage} />
         </Switch>
       </div>
     </Router>

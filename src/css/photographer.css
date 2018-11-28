@@ -28,7 +28,8 @@ font-family: 'Merriweather', serif;
 }
 
 .product-images:hover {
-  border: 1px solid #777;
+  border: 2px solid #777;
+  border-color: #eb7171
 }
 /* position like heart in an image */
 
@@ -55,7 +56,7 @@ font-family: 'Merriweather', serif;
 /* tab && layout*/
 .tabbar {
 
-  margin: 150px 120px 180px 150px;
+  margin: 80px 120px 180px 150px;
 }
 .left-segment{
   padding-right: 2px !important;

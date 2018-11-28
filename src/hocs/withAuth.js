@@ -7,9 +7,9 @@ import { Loader } from 'semantic-ui-react';
 //WrappedComponent is the Profile component
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
-    // componentDidMount() {
-    //   if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
-    // }
+    componentDidMount() {
+      if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+    }
 
     render() {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
