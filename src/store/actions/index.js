@@ -26,7 +26,7 @@ export const fetchPhotographersSuccess = photographers => ({
 
 export const loginUser =(username, password) => {
   return (dispatch)=> {
-    dispatch({type: AUTHENTICATING_USER})
+    dispatch({type:AUTHENTICATING_USER})
     fetch('http://localhost:3000/api/v1/login', {
       method: "POST",
       headers: {

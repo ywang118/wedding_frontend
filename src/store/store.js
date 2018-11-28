@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import photographerReducer from './reducers/photographerReducer';
+import userReducer from './reducers/userReducer';
 const rootReducer = combineReducers({
 photographerReducer
 })
