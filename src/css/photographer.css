@@ -5,7 +5,7 @@
   text-align: center;
   margin-top: 75px;
   margin-bottom: 40px;
-  font-family: Arial;
+  font-family: 'Merriweather', serif;
   letter-spacing:.1em
 }
 #photographers-container {
@@ -14,13 +14,13 @@
   text-align: center;
   padding: 30px;
   justify-content: space-around;
-  font-family: Arial;
+font-family: 'Merriweather', serif;
   letter-spacing:.1em
 }
 .product-images {
-  margin: 24px 15px 20px 15px;
+  margin: 24px 30px 20px 15px;
   width: 280px;
-  height: 350px;
+  height: 360px;
   border: 10px;
 
   margin-left: 10px;
@@ -32,30 +32,114 @@
 }
 /* position like heart in an image */
 
-.container {
-  position: relative;
+
+/* external css: flickity.css */
+
+.carousel {
+  background: #EEE;
+  height: 480px;
 }
 
-.topright {
-  position: absolute;
-  top: 40px;
-  right: 16px;
-  font-size: 18px;
-  color: white;
+.carousel img {
+  display: block;
+  height: 400px;
 }
 
-/* heart setting */
-.heart {
-  width: 100px;
-  height: 100px;
-  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
-  background-position: 0 0;
-  cursor: pointer;
-  transition: background-position 1s steps(28);
-  transition-duration: 0s;
-
-  &.isLiked {
-    transition-duration: 1s;
-    background-position: -2800px 0;
+@media screen and ( min-width: 768px ) {
+  .carousel img {
+    height: 480px;
+    width: auto;
   }
+}
+
+/* tab && layout*/
+.tabbar {
+
+  margin: 180px 120px 180px 150px;
+}
+.left-segment{
+  padding-right: 2px !important;
+}
+
+.right-segment{
+  margin-top: 20px;
+}
+/* Details segment */
+.photographer-segment{
+  margin-top: 10px;
+
+}
+.photographer-segment h1{
+  font-family: Arial;
+  letter-spacing:.08rem;
+}
+.photographer-segment p{
+  font-size: 1.125rem;
+font-family: 'Merriweather', serif;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 30px;
+  font-weight: 100;
+  color: grey;
+  box-sizing: inherit;
+  display: block;
+  padding-bottom: 18px;
+}
+.photographer-about{
+  color: black !important;
+  font-weight: bold!important;
+}
+#photographer-title{
+  font-weight: 400 !important;
+  color: darkgrey;
+  font-size: 0.8889rem;
+  padding-bottom: 3px;
+  line-height: 1.25;
+  box-sizing: inherit;
+  display: block;
+}
+#write-review{
+  font-size: 0.88889rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  display: block;
+margin-block-start: 1.33em;
+margin-block-end: 1.33em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+}
+.styles__button-with-reviews{
+  margin-bottom: 1.5rem!important;
+}
+.styles-review-wrapper{
+  padding-bottom: 1.5rem;
+padding-top: 1.5rem;
+border-top-width: 0.0625rem;
+border-top-color: #e5e5e5;
+border-top-style: solid;
+}
+.inlinestyle p{
+  display: inline;
+  margin-left: 10px;
+  font-size: 1.125rem;
+}
+.inlinestyle span{
+  float: right;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+.style-vertical {
+  display: -ms-flexbox;
+    display: flex;
+    text-align: left;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 1.5rem;
 }

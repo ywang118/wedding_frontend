@@ -9,13 +9,13 @@ body {
   justify-content: space-around;
   text-align: right;
   align-items: center;
-  margin: 10px 0px 10px 80px;
+  margin: 10px 0px 10px 10px;
 }
 
 .main-logo {
   width: 260px;
   height: 100px;
-  margin-left: 40px;
+  margin-left: 0px;
 }
 
 .login {
