@@ -41,22 +41,28 @@ font-family: 'Merriweather', serif;
   height: 480px;
 }
 
-.carousel img {
+.alice-carousel__stage-item{
+  width:auto !important;
+}
+
+.alice-carousel__stage-item img {
   display: block;
   height: 400px;
+
 }
 
 @media screen and ( min-width: 768px ) {
-  .carousel img {
+  .alice-carousel__stage-item img {
     height: 480px;
     width: auto;
+    margin-right: 0px !important;
   }
 }
 
 /* tab && layout*/
 .tabbar {
 
-  margin: 80px 120px 180px 150px;
+  margin: 30px 120px 180px 150px;
 }
 .left-segment{
   padding-right: 2px !important;

@@ -1,9 +1,10 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tab,Grid,Segment,Button,Modal } from 'semantic-ui-react';
+import ReactDOM from 'react-dom';
 import {setCurrentPhotographer} from '../store/actions/index';
-
-import Flickity from 'react-flickity-component'
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css"
 import 'semantic-ui-css/semantic.min.css'
 class PhotographerDetailPage extends Component {
 
@@ -16,30 +17,42 @@ class PhotographerDetailPage extends Component {
   }
 
   ///////      //////////             image Galleries               ////////////
-  flickityOptions = {
-    initialIndex: 1,
-  }
 
   transport(){
     if (this.props.photographer.images){
       let i = this.props.photographer.images.map(image=>
-        <img key={image.id} src={image.image_url}/>)
+        <div key={image.id} className="yours-custom-class"><img key={image.id} src={image.image_url} /></div>)
       return i
     }
   }
 
+  responsive = {
+      0: { items: 1 },
+      600: { items: 2 },
+      1024: { items: 3 },
+    };
+
+    galleryItems() {
+
+        if (this.props.photographer.images){
+        return (this.props.photographer.images.map((image) => (
+        <img key={image.id} src={image.image_url} />
+        ))
+      )
+      }
+
+    };
+
+
+
+
+
   Carousel(){
     return (
-      <Flickity
-      className={'carousel'} // default ''
-      elementType={'div'} // default 'div'
-      options={this.flickityOptions} // takes flickity options {}
-      disableImagesLoaded={false} // default false
-      reloadOnUpdate // default false
-    >
 
-      {this.transport()}
-    </Flickity>
+      <AliceCarousel mouseDragEnabled >
+        {this.transport()}
+      </AliceCarousel>
     )
   }
 
@@ -124,10 +137,23 @@ class PhotographerDetailPage extends Component {
   //////////////                  price and book segment                     //////////////
 
   render(){
-
+    const items = this.galleryItems();
     return (
       <Fragment>
-        {this.Carousel()}
+      <AliceCarousel
+      items={items}
+      duration={400}
+      autoPlay={true}
+      startIndex = {0}
+      fadeOutAnimation={true}
+      mouseDragEnabled={true}
+      playButtonEnabled={true}
+      autoPlayInterval={2000}
+      autoPlayDirection="ltr"
+      responsive={this.responsive}
+      disableAutoPlayOnAction={true}
+
+    />
 
         <div className= "tabbar">
           <div className="ui grid ">

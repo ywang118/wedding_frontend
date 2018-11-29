@@ -1,5 +1,5 @@
 import  React, { Component, Fragment } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
