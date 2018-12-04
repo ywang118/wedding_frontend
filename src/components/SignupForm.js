@@ -9,7 +9,7 @@ class SignupForm extends React.Component {
 
   handleChange = (e,data) => {
     this.setState ({ [data.name]: data.value}, ()=> {
-      console.log(this.state)
+      // console.log(this.state)
     })
   }
   handleLoginSubmit = ()=> {

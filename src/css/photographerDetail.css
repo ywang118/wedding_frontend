@@ -1,0 +1,185 @@
+/* external css: flickity.css */
+
+.carousel {
+  background: #EEE;
+  height: 480px;
+}
+
+.alice-carousel__stage-item{
+  width:auto !important;
+}
+
+.alice-carousel__stage-item img {
+  display: block;
+  height: 400px;
+
+}
+
+@media screen and ( min-width: 768px ) {
+  .alice-carousel__stage-item img {
+    height: 480px;
+    width: auto;
+    margin-right: 0px !important;
+  }
+}
+
+/* tab && layout*/
+.tabbar {
+
+  margin: 30px 120px 180px 150px;
+}
+.left-segment{
+  padding-right: 2px !important;
+}
+
+.right-segment{
+  margin-top: 20px;
+}
+/* Details segment */
+.photographer-segment{
+  margin-top: 10px;
+
+}
+.photographer-segment h1{
+  font-family: Arial;
+  letter-spacing:.08rem;
+}
+.photographer-segment p{
+  font-size: 1.125rem;
+font-family: 'Merriweather', serif;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 30px;
+  font-weight: 100;
+  color: grey;
+  box-sizing: inherit;
+  display: block;
+  padding-bottom: 18px;
+}
+.photographer-about{
+  color: black !important;
+  font-weight: bold!important;
+}
+#photographer-title{
+  font-weight: 400 !important;
+  color: darkgrey;
+  font-size: 0.8889rem;
+  padding-bottom: 3px;
+  line-height: 1.25;
+  box-sizing: inherit;
+  display: block;
+}
+#write-review{
+  font-size: 0.88889rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  display: block;
+margin-block-start: 1.33em;
+margin-block-end: 1.33em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+}
+.styles__button-with-reviews{
+  margin-bottom: 1.5rem!important;
+}
+.styles-review-wrapper{
+  padding-bottom: 1.5rem;
+padding-top: 1.5rem;
+border-top-width: 0.0625rem;
+border-top-color: #e5e5e5;
+
+}
+.inlinestyle p{
+  display: inline;
+  margin-left: 10px;
+  font-size: 1.125rem;
+}
+.inlinestyle span{
+  float: right;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+.style-vertical {
+  display: -ms-flexbox;
+    display: flex;
+    text-align: left;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.styles_like {
+  margin-top: 15px !important;
+
+}
+
+.index__oneButton___2Gotm{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.medium--3f2c6 {
+    padding: 2.5rem ;
+    width: 560px;
+    height: auto;
+}
+.index__xoWizard {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: 1;
+    flex: 1;
+    margin-top: -20px;
+}
+.index__header___2b8OB {
+    margin-bottom: 1.25rem !important;
+    line-height: 1.25;
+}
+.react-datepicker__input-container {
+  height: 3rem !important;
+    line-height: 1.8rem !important;
+    padding: 1rem 0.5rem 0.25rem !important;
+
+}
+.date_btn{
+    margin-left: 0.2rem!important;
+    margin-right: 0.5rem !important;
+    margin-top: 1.5rem !important;
+}
+.date-model-container{
+  width: 280px !important;
+}
+.review{
+  padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-top-width: 0.0625rem;
+    border-top-color: #e5e5e5;
+    border-top-style: solid;
+    font-family: 'Merriweather', serif;
+}
+.reviewRating{
+  font-weight: 400;
+  color: #787878;
+font-size: 0.79012rem;
+margin-left: 0.5rem;
+box-sizing: inherit;
+}
+.review-body{
+  font-weight: 100;
+  color: #1f1f1f;
+font-size: 1.125rem;
+letter-spacing:.09rem;
+font-family: 'Merriweather', serif;
+box-sizing: inherit;
+line-height: 25px;
+
+}

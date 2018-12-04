@@ -1,20 +1,85 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { Tab,Grid,Segment,Button,Modal } from 'semantic-ui-react';
+import { Tab,Grid,Segment,Button,Modal,Icon,Popup,Image,Header } from 'semantic-ui-react';
 import ReactDOM from 'react-dom';
-import {setCurrentPhotographer} from '../store/actions/index';
+import {setCurrentPhotographer, addUserPhotographer,deleteUserPhotographer,addOrder} from '../store/actions/index';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css"
 import 'semantic-ui-css/semantic.min.css'
+import { Link } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import NewCommentForm from '../components/NewCommentForm';
+import StarRatings from 'react-star-ratings';
 class PhotographerDetailPage extends Component {
+  constructor(props) {
+   super(props);
+   this.state = {
+     like: false,
+     showModal: false,
+     startDate: new Date(),
+     comments: [],
+     rating: 0,
+     showComment: false,
+
+   };
+   this.handleChange = this.handleChange.bind(this);
+ }
+  // state = {
+  //   like: false,
+  //
+  // }
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
 
   componentDidMount(){
     fetch(`http://localhost:3000/api/v1/photographers/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(photographer => {
       this.props.setCurrentPhotographer(photographer)
+
+      if(this.props.user && photographer.user_photographers.find(user=> user.user_id === this.props.user.id)) {
+        this.setState({
+          like: true
+        })
+      } else {
+        this.setState({
+          like:false
+        })
+      }
     })
+    fetch('http://localhost:3000/api/v1/comments')
+      .then(res=>res.json())
+      .then(resJson=> {
+        this.setState({
+          comments: resJson
+        })
+      })
   }
+  //////book order /////
+
+  handelCancel=()=>{
+    this.setState({ showModal: false })
+  }
+  handelSubmit=()=>{
+    if(this.props.user){
+      this.props.addOrder(this.props.photographer, this.props.user,this.state.startDate)
+    } else{
+      return <Popup trigger={   <Button className="date_btn"basic color='red' onClick={this.handelSubmit}>
+          Submit
+         </Button>} content="Please login to like this photographer!" />
+    }
+
+    this.setState({ showModal: false })
+  }
+  ////////////////////       add/ delete user_photographer              //////////////////////////////
+    getUserPhotographer = () => {
+      return this.props.photographer.user_photographers.find(userPhotographer => userPhotographer.user_id === this.props.user.id)
+    }
+
 
   ///////      //////////             image Galleries               ////////////
 
@@ -105,19 +170,36 @@ class PhotographerDetailPage extends Component {
     }
 
   //Reviews
+  renderComment(){
+    if(this.props.photographer.comments){
+      return this.props.photographer.comments.map(comment=><div key={comment.id}className="review">
+        <div className="reviewRating">Reviewed On {comment.date} by {this.state.comments.find(review=> review.user.id == comment.user_id).user.username}</div>
+        <div className="review-body">{comment.description}</div>
+      </div> )
+
+
+    }
+  }
+
+
   reviews(){
     return(
       <Fragment>
       <div className="photographer-segment">
         <h1> {this.props.photographer.name} Reviews </h1>
         <p id="write-review"> Share your thoughts with other couples </p>
-        <Button inverted color='pink' className= "styles__button-with-reviews">
+
+        <Modal dimmer="blurring" open={this.state.showComment} trigger={<Button onClick={() => this.setState({showComment: true})} inverted color='pink' className= "styles__button-with-reviews">
           Write a Review
-        </Button>
+        </Button>} >
+          {this.renderForm()}
+
+        </Modal>
+
       </div>
 
       <div className="styles-review-wrapper">
-      <p>Reviews</p>
+      {this.renderComment()}
       </div>
       </Fragment>
 
@@ -134,10 +216,140 @@ class PhotographerDetailPage extends Component {
       </div>
     )
   }
-  //////////////                  price and book segment                     //////////////
+  //////////////                  price/book/like segment                     //////////////
 
+  handleLike = () => {
+    if (this.props.user) {
+      if (this.state.like) {
+        this.props.deleteUserPhotographer(this.getUserPhotographer(), this.props.photographer, this.props.user)
+        this.setState({
+          like: !this.state.like
+        })
+      } else {
+        this.props.addUserPhotographer(this.props.photographer, this.props.user)
+        this.setState({
+          like: !this.state.like
+        })
+      }
+    }
+  }
+
+  renderLikeBtn = () => {
+    const {like } = this.state
+
+    if(this.props.user) {
+      return  <Button basic color='red'
+         onClick={this.handleLike} className="styles_like">
+        {like ? `Unlike` : "Like" }
+        </Button>
+
+    } else {
+      return <Popup trigger={<Button  color='red'
+        onClick={this.handleLike} className="styles_like">
+        {like ? "Unlike" : "Like" }
+        </Button>} content="Please login to like this photographer!" />
+    }
+  }
+
+//////////////////////   renderModal       //////////////////////
+  renderModal = ()=> {
+    if (this.props.user){
+
+      return(
+        <div className= "medium--3f2c6">
+
+          <div className="index__xoWizard">
+          <Modal.Header>
+            <h3 className="index__header___2b8OB">Please Select A Date</h3>
+            </Modal.Header>
+          <Modal.Content>
+          <DatePicker
+       selected={this.state.startDate}
+       onChange={this.handleChange}
+     />
+          </Modal.Content>
+          <Modal.Actions>
+     <Button className="date_btn"basic color='red' onClick={this.handelSubmit}>
+      Submit
+     </Button>
+     <Button className="date_btn"basic color='blue' onClick={this.handelCancel}>
+      Cancel
+     </Button>
+
+   </Modal.Actions>
+          </div>
+        </div>
+       )
+    }else {
+      return (
+        <div className="new-event-login">
+          <Header icon='archive' content='Archive Old Messages' />
+            <Modal.Content>
+            <p>
+              Please login to complete the order
+            </p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Link to='/login'>
+                <Button basic color="red">
+                  <Icon name='checkmark' /> Login
+                </Button>
+              </Link>
+              <Link to='/signup'>
+                <Button basic color="green" >
+                  <Icon name='checkmark' /> Signup
+                </Button>
+              </Link>
+            </Modal.Actions>
+          </div>
+        )
+    }
+  }
+
+  changeRating(nextValue, name) {
+    this.setState({
+      rating: nextValue,
+
+    });
+
+  }
+
+
+  renderForm = ()=>{
+    //     <StarRatings
+    //   rating={this.state.rating}
+    //   starRatedColor="blue"
+    //    changeRating={this.changeRating.bind(this)}
+    //   numberOfStars={5}
+    //   name='rating'
+    // />
+    return(
+      <div className= "medium--3f2c6">
+
+        <div className="index__xoWizard">
+        <Modal.Header>
+          <h3 className="index__header___2b8OB">{this.props.photographer.name} Photographer</h3>
+          </Modal.Header>
+        <Modal.Content>
+          <p className="index__header___2b8OB">Share Your Honest Rating and Opinion</p>
+
+          <NewCommentForm photographerId={this.props.photographer.id} userId={this.props.user.id} />
+        </Modal.Content>
+        </div>
+      </div>
+    )
+  }
+
+
+
+  ///////////////////////     render             //////////////////////
   render(){
+    // console.log(this.test())
     const items = this.galleryItems();
+    const {
+
+      showModal
+    } = this.state
     return (
       <Fragment>
       <AliceCarousel
@@ -167,7 +379,18 @@ class PhotographerDetailPage extends Component {
                   <p>${this.props.photographer.price}</p>   <span>Starting Price</span>
                 </div>
                 <div className="style-vertical">
-                  <Button color='blue'>Book Now</Button>
+                <div className= "index__oneButton___2Gotm">
+
+                <Modal dimmer="blurring"  open={showModal} trigger={<Button onClick={() => this.setState({showModal: true})} color='blue'>Book Now</Button>} >
+
+                {this.renderModal()}
+                </Modal>
+
+                </div>
+                <div className="index__oneButton___2Gotm">
+                  {this.renderLikeBtn()}
+
+              </div>
                 </div>
               </Segment>
             </div>
@@ -179,8 +402,8 @@ class PhotographerDetailPage extends Component {
   }
 }
 const mapStateToProps = state => ({
-
+  user: state.userReducer.user,
   photographer: state.photographerReducer.currentPhotographer
 })
 
-export default connect(mapStateToProps, { setCurrentPhotographer})(PhotographerDetailPage)
+export default connect(mapStateToProps, { setCurrentPhotographer,addUserPhotographer,deleteUserPhotographer,addOrder})(PhotographerDetailPage)

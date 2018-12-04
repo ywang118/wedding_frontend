@@ -14,6 +14,8 @@ import SignupPage from './pages/signupPage';
 //css files
 import './css/navbar.css';
 import './css/photographer.css';
+import './css/photographerDetail.css'
+import './css/profile.css'
 ReactDOM.render(
   <Provider store={store}>
     <Router>

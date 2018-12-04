@@ -1,4 +1,4 @@
-import {FETCH_PHOTOGRAPHERS_SUCCESS,SET_CURRENT_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER,FAILED_LOGIN} from './actionTypes';
+import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,FETCH_PHOTOGRAPHERS_SUCCESS,SET_CURRENT_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER,FAILED_LOGIN} from './actionTypes';
 export const fetchPhotographers=()=>{
   return dispatch => {
     fetch('http://localhost:3000/api/v1/photographers')
@@ -88,9 +88,30 @@ export const signupUser = (username, password) => {
     )
   }
 }
-
+export const addOrder = (photographer,user,date)=> {
+  return dispatch => {
+    fetch('http://localhost:3000/api/v1/orders',{
+      method: "POST",
+      headers: {
+        "Accept": 'application/json',
+         "Content-Type": 'application/json'
+      },
+      body: JSON.stringify({
+        order: {
+          photographer_id: photographer.id,
+          user_id: user.id,
+          date: date
+        }
+      })
+    })
+    .then(res=> res.json())
+    .then(order => {
+      dispatch({type: ADD_ORDER, payload: {order,photographer,user}})
+    })
+  }
+}
 export const fetchCurrentUser = () => {
-  console.log("About to do stuff")
+  // console.log("About to do stuff")
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER }) //tells the app we are fetching
@@ -107,12 +128,66 @@ export const fetchCurrentUser = () => {
     )
   }
 }
-
-
+export const deleteUserPhotographer=(userPhotographer, photographer, user) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/api/v1/user_photographers/${userPhotographer.id}`,{
+      method:'DELETE'
+    })
+    .then(res=> res.json())
+    .then(userPhotographer=>{
+      dispatch({ type:DELETE_USER_PHOTOGRAPHER, payload: {userPhotographer, photographer, user}})
+    })
+  }
+}
+export const addUserPhotographer = (photographer, user) => {
+  return dispatch => {
+    fetch('http://localhost:3000/api/v1/user_photographers',{
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_photographer: {
+          photographer_id: photographer.id,
+          user_id: user.id
+        }
+      })
+    })
+    .then(res=>res.json())
+    .then(resJson => {
+      console.log(resJson)
+      dispatch({type: ADD_USER_PHOTOGRAPHER, payload: {resJson, photographer, user}})
+    })
+  }
+}
 export const failedLogin = (errorMsg) => ({
   type: 'FAILED_LOGIN',
   payload: errorMsg
 })
+
+export const createComment=(values,photographerId, userId,redirectCb)=>{
+  fetch('http://localhost:3000/api/v1/comments',{
+    method: "POST",
+    headers: {
+      "Accept": 'application/json',
+      "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+      comment: {
+        description: values.description,
+        date: values.date,
+        photographer_id: photographerId,
+        user_id: userId
+      }
+    })
+  })
+  .then(res=> res.json())
+  .then(comment=> {
+
+    redirectCb(`/photographers/${photographerId}`)
+  })
+}
 
 // tell our app we're currently fetching
 export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })

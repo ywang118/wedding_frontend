@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-// import { fetchCurrentUser } from '../actions/user'
+// import { fetchCurrentUser } from '../store/actions/user'
 import { Loader } from 'semantic-ui-react';
 
 //WrappedComponent is the Profile component
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
-    componentDidMount() {
-      if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
-    }
+    // componentDidMount() {
+    //  if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+    // }
+
 
     render() {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
