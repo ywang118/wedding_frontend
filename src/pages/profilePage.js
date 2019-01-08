@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {backendEndpoint} from '../keys';
 import { render } from "react-dom";
 import {connect} from 'react-redux';
 import withAuth from '../hocs/withAuth';
@@ -13,6 +14,7 @@ import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } 
 const styles={
   textAligh: "center"
 }
+
 class ProfilePage extends Component {
   constructor(props){
     super(props);
@@ -34,7 +36,7 @@ class ProfilePage extends Component {
   });
 
   scrollSpy.update();
-    fetch('http://localhost:3000/api/v1/comments')
+    fetch(`${backendEndpoint}/comments`)
       .then(res=>res.json())
       .then(resJson=> {
         this.setState({
@@ -42,14 +44,14 @@ class ProfilePage extends Component {
         })
       })
 
-    fetch('http://localhost:3000/api/v1/orders')
+    fetch(`${backendEndpoint}/orders`)
       .then(res=>res.json())
       .then(resJson=> {
         this.setState({
           orders: resJson
         })
       })
-    fetch('http://localhost:3000/api/v1/user_photographers')
+    fetch(`${backendEndpoint}/user_photographers`)
       .then(res=>res.json())
       .then(resJson=> {
         this.setState({

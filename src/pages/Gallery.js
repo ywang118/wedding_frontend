@@ -3,10 +3,11 @@ import ImgFigure from '../components/ImgFigure';
 import ReactDOM from 'react-dom';
 import Gallery from 'react-photo-gallery';
 import Measure from 'react-measure';
+import {backendEndpoint} from '../keys';
 
 let p= [];
 
-  fetch('http://localhost:3000/api/v1/images')
+  fetch(`${backendEndpoint}/images`)
     .then(res=>res.json())
     .then(resJson=>{
 
@@ -28,7 +29,7 @@ class GalleryImage extends Component {
 
 
   componentDidMount(){
-    fetch('http://localhost:3000/api/v1/images')
+    fetch(`${backendEndpoint}/images`)
       .then(res=>res.json())
       .then(resJson=> {
         this.setState({
@@ -46,7 +47,7 @@ class GalleryImage extends Component {
 
 
       let photographerId= p.find(photo=> photo.id ==imgId ).photographer_id
-       
+
       window.location.href = `http://localhost:3001/photographers/${photographerId}`
   }
 

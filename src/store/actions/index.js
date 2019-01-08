@@ -1,7 +1,8 @@
 import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,FETCH_PHOTOGRAPHERS_SUCCESS,SET_CURRENT_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER,FAILED_LOGIN, UPDATE_PROFILE_PHOTO} from './actionTypes';
+import {backendEndpoint} from '../../keys';
 export const fetchPhotographers=()=>{
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/photographers')
+    fetch(`${backendEndpoint}/photographers`)
       .then(res=> res.json())
       .then(json=>
           dispatch(fetchPhotographersSuccess(json)));
@@ -28,7 +29,7 @@ export const loginUser =(username, password) => {
 
   return (dispatch)=> {
     dispatch({type:AUTHENTICATING_USER})
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch(`${backendEndpoint}/login`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -57,7 +58,7 @@ export const loginUser =(username, password) => {
 export const signupUser = (username, password) => {
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER })
-    fetch(`http://localhost:3000/api/v1/users`, {
+    fetch(`${backendEndpoint}/users`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -90,7 +91,7 @@ export const signupUser = (username, password) => {
 }
 export const addOrder = (photographer,user,date)=> {
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/orders',{
+    fetch(`${backendEndpoint}/orders`,{
       method: "POST",
       headers: {
         "Accept": 'application/json',
@@ -129,7 +130,7 @@ export const updateProfilePhoto = (userId, file) => {
 }
 
 export const updateBackendProfile = (userId, avatarUrl) => {
-  fetch(`http://localhost:3000/api/v1/users/${userId}`, {
+  fetch(`${backendEndpoint}/users/${userId}`, {
     method: "PATCH",
     headers: {
       "Accept": "application/json",
@@ -147,7 +148,7 @@ export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     dispatch({ type: AUTHENTICATING_USER }) //tells the app we are fetching
-    fetch('http://localhost:3000/api/v1/profile', {
+    fetch(`${backendEndpoint}/profile`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -163,7 +164,7 @@ export const fetchCurrentUser = () => {
 export const deleteUserPhotographer=(userPhotographer, photographer, user) => {
 
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/user_photographers/${userPhotographer.id}`,{
+    fetch(`${backendEndpoint}/user_photographers/${userPhotographer.id}`,{
       method:'DELETE'
     })
     .then(res=> res.json())
@@ -174,7 +175,7 @@ export const deleteUserPhotographer=(userPhotographer, photographer, user) => {
 }
 export const addUserPhotographer = (photographer, user) => {
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/user_photographers',{
+    fetch(`${backendEndpoint}/user_photographers`,{
       method: "POST",
       headers: {
         'Accept': 'application/json',
@@ -200,7 +201,7 @@ export const failedLogin = (errorMsg) => ({
 })
 
 export const createComment=(values,photographerId, userId,redirectCb)=>{
-  fetch('http://localhost:3000/api/v1/comments',{
+  fetch(`${backendEndpoint}/comments`,{
     method: "POST",
     headers: {
       "Accept": 'application/json',

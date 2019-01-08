@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NewCommentForm from '../components/NewCommentForm';
 import StarRatings from 'react-star-ratings';
+import {backendEndpoint} from '../keys';
 class PhotographerDetailPage extends Component {
   constructor(props) {
    super(props);
@@ -36,7 +37,7 @@ class PhotographerDetailPage extends Component {
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3000/api/v1/photographers/${this.props.match.params.id}`)
+    fetch(`${backendEndpoint}/photographers/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(photographer => {
       this.props.setCurrentPhotographer(photographer)
@@ -51,7 +52,7 @@ class PhotographerDetailPage extends Component {
         })
       }
     })
-    fetch('http://localhost:3000/api/v1/comments')
+    fetch(`${backendEndpoint}/comments`)
       .then(res=>res.json())
       .then(resJson=> {
         this.setState({
