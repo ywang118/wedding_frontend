@@ -1,4 +1,4 @@
-import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,FETCH_PHOTOGRAPHERS_SUCCESS,SET_CURRENT_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER,FAILED_LOGIN} from './actionTypes';
+import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,FETCH_PHOTOGRAPHERS_SUCCESS,SET_CURRENT_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER,FAILED_LOGIN, UPDATE_PROFILE_PHOTO} from './actionTypes';
 export const fetchPhotographers=()=>{
   return dispatch => {
     fetch('http://localhost:3000/api/v1/photographers')
@@ -110,6 +110,38 @@ export const addOrder = (photographer,user,date)=> {
     })
   }
 }
+export const updateProfilePhoto = (userId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', "vfxbu1dt");
+  return dispatch => {
+    fetch('https://api.cloudinary.com/v1_1/dumkk6jbh/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      updateBackendProfile(userId, data.secure_url)
+      dispatch({type: UPDATE_PROFILE_PHOTO, payload: data.secure_url})
+    })
+
+  }
+}
+
+export const updateBackendProfile = (userId, avatarUrl) => {
+  fetch(`http://localhost:3000/api/v1/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      avatar: avatarUrl
+    })
+  })
+  // .then(response => response.json())
+  // .then(console.log)
+}
 export const fetchCurrentUser = () => {
   // console.log("About to do stuff")
   // takes the token in localStorage and finds out who it belongs to
@@ -129,6 +161,7 @@ export const fetchCurrentUser = () => {
   }
 }
 export const deleteUserPhotographer=(userPhotographer, photographer, user) => {
+
   return dispatch => {
     fetch(`http://localhost:3000/api/v1/user_photographers/${userPhotographer.id}`,{
       method:'DELETE'

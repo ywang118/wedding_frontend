@@ -1,5 +1,5 @@
 body {
-  font-family: 'Monda', sans-serif;
+  font-family: "Raleway", sans-serif ;
 }
 
 .navbar {
@@ -31,7 +31,7 @@ body {
 }
 
 .login:hover {
-  background-color: #eb7171;
+  background-color: #efb5b3;
   border-radius: 22.5px;
   color: white;
   cursor: pointer;
@@ -53,7 +53,7 @@ body {
 }
 
 .p-browse:hover {
-  background-color: #eb7171;
+  background-color: #efb5b3;
   border-radius: 22.5px;
   color: white;
   cursor: pointer;
@@ -70,7 +70,7 @@ body {
 }
 
 .browse:hover {
-  background-color: #eb7171;
+  background-color: #efb5b3;
   border-radius: 22.5px;
   color: white;
   cursor: pointer;
@@ -103,5 +103,5 @@ body {
     justify-content: space-around;
     align-items: center;
     height: 60px;
-    background-color: #eb7171;
+    background-color: #efb5b3;
 }

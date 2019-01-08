@@ -152,8 +152,10 @@ class PhotographerDetailPage extends Component {
           <Grid columns='equal'>
             <Grid.Row>
               <Grid.Column>
+                <div className="photographer-detail-photo">
                 <p id="photographer-title">Photo & Video</p>
                 <p>{this.props.photographer.photo_video}</p>
+                </div>
               </Grid.Column>
               <Grid.Column>
                 <div>
@@ -173,7 +175,7 @@ class PhotographerDetailPage extends Component {
   renderComment(){
     if(this.props.photographer.comments){
       return this.props.photographer.comments.map(comment=><div key={comment.id}className="review">
-        <div className="reviewRating">Reviewed On {comment.date} by {this.state.comments.find(review=> review.user.id == comment.user_id).user.username}</div>
+        <div className="reviewRating">Reviewed On {comment.date} by {this.state.comments.find(review=> review.user.id == comment.user_id).user.avatar ? <Image  src={this.state.comments.find(review=> review.user.id == comment.user_id).user.avatar} avatar arl="" />: null} {this.state.comments.find(review=> review.user.id == comment.user_id).user.username}</div>
         <div className="review-body">{comment.description}</div>
       </div> )
 
@@ -181,7 +183,7 @@ class PhotographerDetailPage extends Component {
     }
   }
 
-
+ close =()=> this.setState({showComment: false})
   reviews(){
     return(
       <Fragment>
@@ -259,9 +261,9 @@ class PhotographerDetailPage extends Component {
         <div className= "medium--3f2c6">
 
           <div className="index__xoWizard">
-          <Modal.Header>
+
             <h3 className="index__header___2b8OB">Please Select A Date</h3>
-            </Modal.Header>
+
           <Modal.Content>
           <DatePicker
        selected={this.state.startDate}
@@ -282,12 +284,13 @@ class PhotographerDetailPage extends Component {
        )
     }else {
       return (
-        <div className="new-event-login">
-          <Header icon='archive' content='Archive Old Messages' />
+        <div className="medium--3f2c6">
+          <div className="index__xoWizard">
             <Modal.Content>
-            <p>
+
+            <h3 className="index__header___2b8OB">
               Please login to complete the order
-            </p>
+            </h3>
             </Modal.Content>
             <Modal.Actions>
               <Link to='/login'>
@@ -301,6 +304,7 @@ class PhotographerDetailPage extends Component {
                 </Button>
               </Link>
             </Modal.Actions>
+            </div>
           </div>
         )
     }
@@ -327,9 +331,9 @@ class PhotographerDetailPage extends Component {
       <div className= "medium--3f2c6">
 
         <div className="index__xoWizard">
-        <Modal.Header>
+
           <h3 className="index__header___2b8OB">{this.props.photographer.name} Photographer</h3>
-          </Modal.Header>
+
         <Modal.Content>
           <p className="index__header___2b8OB">Share Your Honest Rating and Opinion</p>
 

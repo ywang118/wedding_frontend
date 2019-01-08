@@ -27,8 +27,10 @@ class NewCommentForm extends Component {
 
 onSubmit = (values) => {
   createComment(values, this.props.photographerId, this.props.userId, (url) => {
-    this.props.history.push(url)
+      window.location.href = `http://localhost:3001${url}`
+
   });
+
 }
   render(){
     return(

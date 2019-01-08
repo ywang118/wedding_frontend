@@ -8,6 +8,9 @@
   font-family: 'Merriweather', serif;
   letter-spacing:.1em
 }
+.home-name{
+  background-color: white;
+}
 .styles-product-div{
   margin-right: 1.25rem;
 margin-bottom: 1.25rem;
@@ -60,7 +63,7 @@ justify-content: center;
 
 .product-images:hover {
   border: 2px solid #777;
-  border-color: #eb7171
+  border-color: #efb5b3
 }
 /* position like heart in an image */
 .img__description {

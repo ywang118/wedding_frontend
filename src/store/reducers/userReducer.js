@@ -1,4 +1,4 @@
-import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN } from '../actions/actionTypes';
+import {ADD_ORDER, DELETE_USER_PHOTOGRAPHER,ADD_USER_PHOTOGRAPHER,SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN,UPDATE_PROFILE_PHOTO } from '../actions/actionTypes';
 
 const defaultState = {
   user: null,
@@ -18,6 +18,8 @@ function userReducer(state=defaultState, action) {
       return { ...state, authenticatingUser: false }
     case FAILED_LOGIN:
       return { ...state, failedLogin: true, error: action.payload, authenticatingUser: false }
+    case UPDATE_PROFILE_PHOTO:
+      return { ...state, user: {...state.user, avatar: action.payload}}
     case ADD_USER_PHOTOGRAPHER:
 
       return { ...state, user: {...state.user, photographers: [...state.user.photographers, action.payload.photographer]}}

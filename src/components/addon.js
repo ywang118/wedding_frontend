@@ -1,45 +1,36 @@
-function Navbar(props){
-  return (
-    <nav className= "navbar">
-      <NavLink
-        className= "home-name"
-        to= '/'> <img src={logo} className= "main-logo" alt= "logo" />
-      </NavLink>
-      <NavLink
-        className="nav-button"
-        to="/photographers"> <button className="nav-button p-browse"> Photographers </button></NavLink>
-        <div>
+render: function() {
 
-         <NavLink
-         to="/login"> <button className="nav-button login"> Log In  </button></NavLink>
-         <NavLink
-         to="/started">  <button className="nav-button started"> Get started  </button></NavLink>
-       </div>
-    </nav>
+    var controllerUnits = [],
+        imgFigures = [];
 
+    imageDatas.forEach(function (value, index) {
 
+        if (!this.state.imgsArrangeArr[index]) {
+            this.state.imgsArrangeArr[index] = {
+                pos: {
+                    left: 0,
+                    top: 0
+                },
+                rotate: 0,
+                isInverse: false,
+                isCenter: false
+            };
+        }
 
+        imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
 
+        controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
+    }.bind(this));
 
-    <div class="pusher">
-      <div class="ui menu asd borderless" style="border-radius: 0!important; border: 0; margin-left: 260px; -webkit-transition-duration: 0.1s;">
-        <a class="item openbtn">
-          <i class="icon content"></i>
-        </a>
-        <a class="item">Messages
-                    </a>
-        <div class="right menu">
-          <div class="ui dropdown item">
-            Language <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item">English</a>
-              <a class="item">Russian</a>
-              <a class="item">Spanish</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="ui primary button">Sign Up</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    return (
+        <section className="stage" ref="stage">
+            <section className="img-sec">
+                {imgFigures}
+            </section>
+            <nav className="controller-nav">
+                {controllerUnits}
+            </nav>
+        </section>
+    );
+  }
+});

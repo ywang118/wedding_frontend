@@ -75,6 +75,10 @@ font-family: 'Merriweather', serif;
   line-height: 1.25;
   box-sizing: inherit;
   display: block;
+  margin-left: 20px;
+}
+.photographer-detail-photo{
+  margin-left: 20px;
 }
 #write-review{
   font-size: 0.88889rem;
@@ -125,7 +129,15 @@ border-top-color: #e5e5e5;
   flex-direction: column;
 
 }
+/* modal */
 
+
+
+.ui.modal {
+    width: 600px !important;
+    height: 450px !important;
+    margin: 200px !important;
+}
 .medium--3f2c6 {
     padding: 2.5rem ;
     width: 560px;
@@ -140,7 +152,11 @@ border-top-color: #e5e5e5;
     flex: 1;
     margin-top: -20px;
 }
+.index__xoWizard .header{
+  background-color: white!important;
+}
 .index__header___2b8OB {
+  background-color: white!important;
     margin-bottom: 1.25rem !important;
     line-height: 1.25;
 }
@@ -182,4 +198,7 @@ font-family: 'Merriweather', serif;
 box-sizing: inherit;
 line-height: 25px;
 
+}
+.modal{
+  text-align: center;
 }

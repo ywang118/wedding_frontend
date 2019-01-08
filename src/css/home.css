@@ -1,0 +1,327 @@
+/* GENERAL CSS */
+body {
+
+  font-family: "Raleway", sans-serif !important;
+  color: #333;
+}
+
+#footer-p{
+  padding:30px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+.header-h{
+  background-image: url('./assets/index-1.jpeg');
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+
+}
+
+.header-overlay{
+  background-color: rgba(31,31,31,0.6);
+  height: 550px;
+}
+
+.header-text h1 {
+  font-family: "Raleway", sans-serif;
+  margin-top: 60px !important;
+  margin-left: 30px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 45px;
+  padding-top: 40px;
+  text-transform: uppercase;
+}
+.header-text p{
+  padding-top: 20px;
+  margin-left: 30px;
+  color: #fff;
+  font-size: 17px;
+  line-height: 28px;
+}
+.header-btns {
+  padding-top: 2px;
+  margin-left: 30px;
+  margin-top: 90px;
+  margin-bottom: 50px;
+
+
+  text-shadow:  1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+
+}
+.btn-download,.btn-download.focus,
+.btn-download.active,.btn-download.visited
+{
+  background: transparent;
+  color:white!important;
+
+  border-color: #efb5b3;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 19px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -o-background-size: all 1s;
+  -webkit-background-size: all 1s;
+}
+.btn-download:hover {
+  background-color: #efb5b3;
+  color: #fff;
+}
+.btn-tour,
+.btn-tour:focus,
+.btn-tour:active,
+.btn-tour:visited {
+  color:#A9ADB0;
+  margin-left: 20px;
+  text-transform: uppercase;
+  font-size: 19px;
+  font-weight: 500;
+  transition: all 1s;
+  background: transparent;
+  -webkit-transition: all 1s;
+  -o-background-size: all 1s;
+  -webkit-background-size: all 1s;
+}
+.btn-tour:hover {
+  color: #fff;
+}
+/* =================== Generic CSS =========== */
+.section-title {
+
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+.section-title h2{
+  font-family: "Raleway", sans-serif;
+}
+.section-title p{
+
+  color: #333;
+  line-height: 28px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 45px;
+  margin-bottom: 30px;
+}
+.section-title h2 {
+
+  position: relative;
+  text-align: center;
+  color: #333;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.section-title h2::after{
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left:50%;
+  width: 60px;
+  height: 1px;
+  background-color: #efb5b3;
+  margin-left: -30px
+}
+/* about us */
+
+.choose-us-wrapper{
+  padding-top: 50px;
+  margin-bottom: 110px;
+
+}
+.about-iphone{
+  height: 626px;
+  width: 600px;
+  background-size: cover;
+  background-image: url('https://media-api.xogrp.com/images/618ab73f-4771-4f19-b79a-864bf4f389e8~rs_2048.h');
+}
+.about-iphone img{
+
+
+   max-height: 100%;
+  margin-top:  8px;
+}
+.choose-us-title {
+  padding-bottom: 80px;
+
+}
+.choose-us-title h2 {
+  font-family: "Raleway", sans-serif ;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 37px;
+  position: relative;
+  margin-left: 80px;
+  margin-right: 70px;
+
+}
+.choose-us-title h2:after {
+
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 70px;
+  height: 1px;
+  background-color: #efb5b3;
+}
+
+.choose-us-title p {
+  margin-left: 80px;
+  margin-right: 70px;
+  font-family: "Raleway", sans-serif ;
+  margin-top: 40px;
+  font-size:  19px;
+  line-height: 24px;
+}
+.choose-us-item {
+  position: relative;
+  padding-bottom: 80px;
+  padding-left: 80px;
+
+}
+.choose-us-item div{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.choose-us-item div i{
+  font-size: 55px;
+  color: #efb5b3;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -o-background-size: all 1s;
+  -webkit-background-size: all 1s;
+
+}
+.choose-us-item h3{
+  font-family: "Raleway", sans-serif ;
+  color: #343434;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 800;
+
+}
+.choose-us-item p {
+  font-family: "Raleway", sans-serif ;
+  color:#727272;
+  font-size: 15px;
+
+}
+
+/* ===========Testimonials======= */
+.testimonial{
+  background-image: url('./assets/index-2.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-position: 50% 50%;
+}
+
+.testimonial-overlay{
+  background-color: rgba(31,31,31,0.75);
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+}
+.slide{
+  background-color: rgba(31,31,31,0);
+}
+.carousel-indicators {
+  bottom: -10px;
+}
+.carousel-inner .item img{
+  height:138px;
+  width: 138px;
+  border: 2px solid #efb5b3;
+  border-radius: 50%;
+  padding: 3px;
+}
+.testimonial-caption{
+  padding-bottom: 70px;
+
+}
+.testimonial-caption h2{
+  color: #efb5b3;
+  text-transform: uppercase;
+  font-weight: 900px;
+  font-size: 30px;
+  margin-top: 25px;
+}
+.testimonial-caption h4{
+  color: #efb5b3;
+}
+.testimonial-caption h4 span{
+  color: #D8D8D8;
+  font-style: italic;
+  font-weight: 300;
+
+}
+.testimonial-caption p {
+  color: #D8D8D8;
+  font-size: 18px;
+  line-height: 27px;
+  padding-top: 50px;
+}
+.dress img{
+  max-width: 100%;
+  height: 468.88px;
+}
+.dress-designers{
+  padding-top: 50px;
+  margin-bottom: 100px;
+}
+/* counter */
+.counter{
+  background-image: url('./assets/index-3.jpg');
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+}
+.counter-overlay{
+  padding-top: 120px;
+  padding-bottom: 120px;
+  background: rgba(0,0,0,0.6)
+
+}
+.counter-item i{
+  color: #efb5b3;
+  font-size: 60px;
+
+}
+.counter-item h2{
+  color: #D7DADB;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 35px;
+  margin-top: 15px;
+  margin-bottom: 1px;
+}
+.counter-item p{
+  color: #D7DADB;
+  font-size: 20px;
+  margin-top: 0px;
+  font-weight: 300;
+  text-transform:  uppercase;
+
+}

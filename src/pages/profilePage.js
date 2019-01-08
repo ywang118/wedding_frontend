@@ -8,6 +8,7 @@ import empty from '../css/assets/empty.png';
 import { Button, TextArea, Form, Image } from 'semantic-ui-react';
 import changeProfilePhoto from '../css/assets/change-profile-photo.png';
 import header from '../css/assets/header.jpg';
+import {updateProfilePhoto} from '../store/actions/index'
 import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 const styles={
   textAligh: "center"
@@ -20,7 +21,7 @@ class ProfilePage extends Component {
   state = {
     orders: [],
     comments: [],
-
+    likes: [],
   }
 
   componentDidMount(){
@@ -48,6 +49,14 @@ class ProfilePage extends Component {
           orders: resJson
         })
       })
+    fetch('http://localhost:3000/api/v1/user_photographers')
+      .then(res=>res.json())
+      .then(resJson=> {
+        this.setState({
+          likes: resJson
+        })
+      })
+
   }  ///end of componentDidMount
 
   scrollToTop() {
@@ -58,7 +67,12 @@ class ProfilePage extends Component {
     Events.scrollEvent.remove("begin");
     Events.scrollEvent.remove("end");
   }
-
+  renderelikedphotographers(){
+    if(this.state.likes.length> 0){
+      let a=  this.state.likes.filter(like=> like.user_id===this.props.user.id)
+      return a.map(like=> like.photographer)
+    }
+  }
 
 
   renderLink(){
@@ -87,7 +101,7 @@ class ProfilePage extends Component {
 
           <Element name="test2" className="profile-photographerlist">
             <h2>My Saved Wedding Photographers</h2>
-            <UserPhotographers photographers={this.props.user.photographers}/>
+            <UserPhotographers photographers={this.renderelikedphotographers()}/>
           </Element>
 
           <Element name="test3" className="profile-photographerlist">
@@ -138,15 +152,24 @@ class ProfilePage extends Component {
     }
   }
   }
+
+  handleChange= (event) => {
+    this.props.updateProfilePhoto(this.props.user.id, event.target.files[0])
+  }
+
+
   renderImage(){
     return (
      <label htmlFor="file-upload">
-       <div className="profile-container">
-         <Image className="profile-image" size="medium" circular src={this.props.user.avatar} arl="" />
-         <div className="profile-overlay overlay-fade">
-           <Image className="overlay-image" size="medium" circular src={changeProfilePhoto} arl="" onClick={this.handleClick} />
-         </div>
+      <div className="profile-container">
+      {this.props.user.avatar ?
+        <Image size="medium"  src={this.props.user.avatar} avatar arl="" />:<div className="profile-overlay overlay-fade">
+          <Image className="overlay-image" size="medium" circular src={changeProfilePhoto} arl="" />
+        </div> }
+
        </div>
+       <br />
+       <br/>
        <input id="file-upload" type="file" onChange={this.handleChange} />
      </label>
    )
@@ -154,7 +177,7 @@ class ProfilePage extends Component {
   renderProfile(){
     return (
       <div>
-      <h2>{this.props.user.username.toLocaleUpperCase()}</h2>
+      <h2>Nice to See You Again, {this.props.user.username.toLocaleUpperCase()} !</h2>
       {this.renderImage()}
       </div>
     )
@@ -188,7 +211,9 @@ class ProfilePage extends Component {
 
   render(){
 
-    console.log(this.props.user.username)
+    console.log(this.renderelikedphotographers())
+    console.log(this.props.user.photographers)
+
     return(
       <Fragment>
       <div className="main-banner">
@@ -206,4 +231,4 @@ const mapStateToProps = state => ({
   user: state.userReducer.user
 })
 
-export default withAuth(connect(mapStateToProps, {  })(ProfilePage));
+export default withAuth(connect(mapStateToProps, {updateProfilePhoto})(ProfilePage));

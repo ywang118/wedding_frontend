@@ -1,0 +1,16 @@
+.random-show{
+  text-align: center!important;
+}
+/* .random-show img{
+position:absolute;
+top:0;
+bottom:0;
+margin: auto;
+width:100%;
+} */
+
+.cover-g {
+  object-fit: cover !important;
+   width: 100% !important;
+  height: 90% !important;
+}

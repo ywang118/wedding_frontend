@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
     return this.props.loggedIn ? (
       <Redirect to="/profile" />
     ) : (
-
+      <div className="login-form">
         <Form className="login-signup-form"
           onSubmit={this.handleLoginSubmit}
           size="mini"
@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
           error={this.props.failedLogin}
         >
           <Message error header={this.props.failedLogin ? this.props.error : null} />
-
+            <div className="change-input-style">
             <Form.Input
               label="username"
               placeholder="username"
@@ -39,6 +39,8 @@ class LoginForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.username}
             />
+            </div>
+            <div className="change-input-style">
             <Form.Input
               type="password"
               label="password"
@@ -47,16 +49,16 @@ class LoginForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.password}
             />
-
-          <Button secondary type="submit">Log in</Button>
+            </div>
+          <Button className="login-btn" type="submit">Log in</Button>
         </Form>
-
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  
+
   return {
 
     authenticatingUser: state.userReducer.authenticatingUser,

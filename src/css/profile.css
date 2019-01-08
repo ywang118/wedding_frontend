@@ -143,3 +143,6 @@ overflow: hidden;
                      0 0 75px #00a67c;
     }
 }
+.container-fluid{
+  background-color: white;
+}

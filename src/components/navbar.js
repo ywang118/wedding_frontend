@@ -21,7 +21,7 @@ class Navbar extends Component {
 
 
       localStorage.removeItem("jwt");
-      window.location.href = "http://localhost:3001/photographers";
+      window.location.href = "http://localhost:3001/home";
 
     this.props.history.push("/logout")
 
@@ -58,20 +58,23 @@ class Navbar extends Component {
   console.log(activeItem)
   return (
     <nav className= "navbar">
+
       <p
         className= "home-name"
         to= '/'> <img src={logo} className= "main-logo" alt= "logo" />
       </p>
+
+      <span> </span><span> </span>
       <div>
       <NavLink
         className="nav-button p-browse"
-        to="/photographers" name ="/photographers" > Home </NavLink>
+        to="/home" name ="/home" > Home </NavLink>
       <NavLink
         className="nav-button p-browse"
         to="/photographers" name ="/photographers" > Photographers</NavLink>
       <NavLink
         className="nav-button p-browse"
-        to="/photographers" name ="/photographers" > Gallery</NavLink>
+        to="/gallery" name ="/gallery" > Gallery</NavLink>
       {this.renderLoginProfile()}
 
       </div>

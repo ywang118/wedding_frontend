@@ -5,7 +5,7 @@ import empty from '../css/assets/empty.png';
 
 const UserPhotographers = (props) => {
 
-    if (props.photographers.length !== 0) {
+    if (props.photographers) {
       return(
         <div className="cols photographer-list">
           {props.photographers.map(photographer => <Photographer key={photographer.id} photographer={photographer} />)}

@@ -20,6 +20,7 @@ class SignupForm extends React.Component {
     return this.props.loggedIn ? (
       <Redirect to= "/profile" />
     ) : (
+      <div className="login-form">
       <Form className="login-signup-form"
       onSubmit= {this.handleLoginSubmit}
       size = "mini"
@@ -27,7 +28,7 @@ class SignupForm extends React.Component {
       loading={this.props.authenticatingUser}
       error={this.props.failedLogin}>
       <Message error header= {this.props.failedLogin ? this.props.error : null} />
-
+      <div className="change-input-style">
       <Form.Input
        label="username"
        placeholder="username"
@@ -35,6 +36,8 @@ class SignupForm extends React.Component {
        onChange={this.handleChange}
        value={this.state.username}
       />
+      </div>
+      <div className="change-input-style">
        <Form.Input
          type="password"
          label="password"
@@ -43,8 +46,10 @@ class SignupForm extends React.Component {
          onChange={this.handleChange}
          value={this.state.password}
        />
-       <Button secondary type="submit">Sign up</Button>
+       </div>
+       <Button className="login-btn" color='pink' type="submit">Sign up</Button>
       </Form>
+    </div>
 
     )
   }
