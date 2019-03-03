@@ -14,7 +14,7 @@ import CountUp from 'react-countup';
 
 const HomePage = () => {
   const handleClick=()=>{
-    window.location.href = `https://evening-waters-70721.herokuapp.com/photographers`
+    window.location.href = `http://localhost:3001/photographers`
   }
   // $(document).ready(function(){
   //   alert('Welcome to Loso with jquery')
