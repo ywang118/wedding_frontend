@@ -128,7 +128,7 @@ class ProfilePage extends Component {
 
       let user_Comment= this.state.comments.find(comment=> comment.id ==id ).photographer_id
       // console.log(user_Comment)
-      window.location.href = `http://localhost:3001/photographers/${user_Comment}`
+      window.location.href = `https://evening-waters-70721.herokuapp.com/photographers/${user_Comment}`
     }
   }
   handleOrder=(event)=>{
@@ -138,7 +138,7 @@ class ProfilePage extends Component {
 
       let user_Order= this.state.orders.find(order=> order.id ==id ).photographer_id
 
-      window.location.href = `http://localhost:3001/photographers/${user_Order}`
+      window.location.href = `https://evening-waters-70721.herokuapp.com/photographers/${user_Order}`
     }
   }
   renderComment(){

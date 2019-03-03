@@ -48,7 +48,7 @@ class GalleryImage extends Component {
 
       let photographerId= p.find(photo=> photo.id ==imgId ).photographer_id
 
-      window.location.href = `http://localhost:3001/photographers/${photographerId}`
+      window.location.href = `https://evening-waters-70721.herokuapp.com/photographers/${photographerId}`
   }
 
   photo_srcs(){

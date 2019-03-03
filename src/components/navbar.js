@@ -21,7 +21,7 @@ class Navbar extends Component {
 
 
       localStorage.removeItem("jwt");
-      window.location.href = "http://localhost:3001/home";
+      window.location.href = "https://evening-waters-70721.herokuapp.com/home";
 
     this.props.history.push("/logout")
 

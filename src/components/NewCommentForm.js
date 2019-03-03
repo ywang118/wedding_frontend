@@ -27,7 +27,7 @@ class NewCommentForm extends Component {
 
 onSubmit = (values) => {
   createComment(values, this.props.photographerId, this.props.userId, (url) => {
-      window.location.href = `http://localhost:3001${url}`
+      window.location.href = `https://evening-waters-70721.herokuapp.com${url}`
 
   });
 
