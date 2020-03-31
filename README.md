@@ -1,7 +1,7 @@
 
 ### Summerose wedding app
 ---
-Javascript & React/Redux frontend for wedding app, a yepl like wedding photography app 
+Javascript & React/Redux frontend for wedding app, a yelp like wedding photography app 
 
 [full demo video](https://www.youtube.com/watch?v=p9BKHH7Gxrc&list=UUD8gmHoM4SEqH_VhejeSjIg)
 
